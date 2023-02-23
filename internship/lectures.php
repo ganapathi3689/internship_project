@@ -16,16 +16,27 @@ else{
 }
 
 
+//start session
+if(!isset($_SESSION)){
+	session_start();
+}
+//cannot acces without login
+if(isset($_SESSION['is_adminlogin'])){
+$adminemail  = $_SESSION['admin_email'];
+}
+else{
+	echo "<script> location.href='adminlogin.php';</script>";
+}
+///
 if(isset($_REQUEST['lessonsubmitbtn'])){
   //checking for empty fields
 if(($_REQUEST['lesson_name'] == "")||($_REQUEST['lesson_desc'] == "")||($_REQUEST['course_id'] == "")||
 ($_REQUEST['course_name'] == "")){
 
-  $msg ='<div class="warning"  >
-  <h3 style="text-align: center;
-  border: 1px solid red;
- color: red;
- background-color: #ff72724f">Fill All Fields</h3></div>';
+  $msg =' 
+<script>
+alert("Fill all the fields");
+</script>';
 }
 else {
   $lesson_name = $_REQUEST['lesson_name'];
@@ -43,20 +54,16 @@ else {
   '$link_folder','$course_id', '$course_name')"; 
   if($conn->query($sql) == TRUE)
   {
-    $msg ='<div class="warning"  >
-  <h3 style="text-align: center;
-  border: 1px solid green;
- color: green;
- 
- background-color: #b7e3b7;">lesson Added Succesfully</h3></div>';
+    $msg =' 
+<script>
+alert("Lessons Added Succesfully");
+</script>';
   }
   else{
-    $msg ='<div class="warning"  >
-    <h3 style="text-align: center;
-    border: 1px solid red;
-   color: red;
-   
-   background-color: #ff72724f">Unable to add lesson</h3></div>';
+    $msg =' 
+<script>
+alert("Unable to lessons");
+</script>';
   }
 }
 }
@@ -86,12 +93,12 @@ else {
     border-bottom-right-radius: 20px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    
+    border-style: inset;
     "><i class="fa fa-youtube-play" style="font-size:24px"></i> &nbsp;&nbsp;Lessons</a>
-	<a href="#"class="icon-a"><i class="fa fa-mortar-board" style="font-size:24px"></i> &nbsp;&nbsp;Quiz</a>
+	<a href="quiz.php"class="icon-a"><i class="fa fa-mortar-board" style="font-size:24px"></i> &nbsp;&nbsp;Quiz</a>
 	<a href="#"class="icon-a"><i class="fa fa-credit-card" style="font-size:24px"></i> &nbsp;&nbsp;payment</a>
 	<a href="#"class="icon-a"><i class="fa fa-key" style="font-size:24px"></i> &nbsp;&nbsp;Change password</a>
-	<a href="#"class="icon-a"><i class="fa fa-sign-out" style="font-size:24px"></i> &nbsp;&nbsp;Logout</a>
+	<a href="logout.php"class="icon-a" name="logout" ><i class="fa fa-sign-out" style="font-size:24px"></i> &nbsp;&nbsp;Logout</a>
 
 </div>
 
@@ -130,7 +137,10 @@ else {
     border-bottom-right-radius: 30px;
     ">Search</button>
       </div>
-      <a  id="button" class="button">Add</a>
+      <?php if(isset($_REQUEST['checkid'])){
+      echo '<a  id="button" class="button">Add</a>';
+      }
+      ?>
     </form>
     <?php
     $sql = "SELECT course_id FROM course";
@@ -166,7 +176,7 @@ else {
     <tr>
         <th>Lesson ID</th>
         <th>Lesson Name</th>
-        <th>Lesson link</th>
+        <th>Lesson Description</th>
         <th>Edit/Delete</th>
       </tr>
     </thead>
