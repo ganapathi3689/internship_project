@@ -195,6 +195,33 @@ width:53px ;
 padding:5px;
     background-color:rgb(248, 82, 82);
   }
+  
+ 
+  .addbutton {
+    background-color: #272c4a;
+    color: white;
+    /* padding: 16px 20px; */
+    /* margin: 8px 0; */
+    /* margin-top: auto; */
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    /* height: 30px; */
+    /* width: 50px; */
+    /* opacity: 0.9; */
+    transition: 0.1s;
+    position: absolute;
+    padding-bottom: 7px;
+    
+  }
+  .addbutton:hover{
+
+padding:6px;
+    background-color:rgb(248, 82, 82);
+  }
   .content-table {
     
     border-collapse: collapse;
@@ -256,6 +283,7 @@ table {
     color: rgba(255, 255, 255, 0.548);
     background-color: #272c4a;
   }
+  
   .bg-model{
     width: auto;
     height: 100%;
@@ -376,3 +404,94 @@ table {
             color: rgba(255, 255, 255, 0.548);
             background-color: #272c4a;
           }
+          .btn:hover{
+            border-radius: 5px;
+            color: white;
+            background-color:rgb(248, 82, 82);
+          }
+          /*  */
+          
+          .flex{
+            display: flex;
+            justify-content: space-between;
+          }
+          .flex b{
+            margin: 10px;
+          }
+          #bg-model2{
+            width: auto;
+            height: 100%;
+            background-color:rgba(0,0,0,0.7);
+            
+            position: absolute;
+            top: 0;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            display: none;
+            z-index: 100;
+            overflow: scroll;
+          } 
+          .model-content2{
+            width: auto;
+            height:auto;
+            background-color:rgb(243, 243, 243);
+           display:inline-block;
+            /* display: flex;
+            justify-content: center;
+            align-items: center;  */
+          /* border-radius: 4px; */
+            position: relative;
+            z-index:101;
+             overflow:hidden; 
+          
+          
+          }
+          .close2{
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            font-weight: bolder;
+            font-size: 40px;
+            transform: rotate(45deg);
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.01s;
+            }
+            .close2:hover{
+                font-size: 42px;
+              
+                    color:rgb(248, 82, 82);
+                  }
+                  .container2{
+                    width: 50%;
+                    margin-top: 40px;
+                      /* margin: 50px auto; */
+                      /* border: 2px solid rgb(48, 155, 231); */
+                      display: inline block;
+                    box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+                    background-color: aliceblue;
+                    overflow: hidden;
+                    
+                  
+                  }
+                  /* Add padding to containers */
+                .container2 {
+                    padding: 16px;
+                    background-color: white;
+                  }
+                  
+                  /* Full-width input fields */
+                 
+                  
+                 
+                  
+                  /* Add a blue text color to links */
+                  /* a {
+                    color: dodgerblue;
+                  } */
+                  
+                  /* Set a grey background color and center the text of the "sign in" section */
+                 
+                  
+          

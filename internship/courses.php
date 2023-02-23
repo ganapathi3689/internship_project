@@ -14,18 +14,27 @@ if($conn->connect_error){
 else{
     echo "connected";
 }
-
+//start session
+if(!isset($_SESSION)){
+	session_start();
+}
+//cannot acces without login
+if(isset($_SESSION['is_adminlogin'])){
+$adminemail  = $_SESSION['admin_email'];
+}
+else{
+	echo "<script> location.href='adminlogin.php';</script>";
+}
 
 if(isset($_REQUEST['coursesubmitbtn'])){
   //checking for empty fields
 if(($_REQUEST['course_name'] == "")||($_REQUEST['course_desc'] == "")||($_REQUEST['course_author'] == "")||
 ($_REQUEST['course_duration'] == "")||($_REQUEST['course_price'] == "")||($_REQUEST['course_original_price'] == "")){
 
-  $msg ='<div class="warning"  >
-  <h3 style="text-align: center;
-  border: 1px solid red;
- color: red;
- background-color: #ff72724f">Fill All Fields</h3></div>';
+  $msg =' 
+<script>
+alert("Fill all the fields");
+</script>';
 }
 else {
   $course_name = $_REQUEST['course_name'];
@@ -44,18 +53,25 @@ else {
   '$course_author', '$img_folder', '$course_duration', '$course_price','$course_original_price')"; 
   if($conn->query($sql) == TRUE)
   {
-    $msg ='<div class="warning"  >
-  <h3 style="text-align: center;
-  border: 1px solid green;
- color: green;
- background-color: #b7e3b7; width:150%;">Course Added Succesfully</h3></div>';
+//     $msg ='<div class="warning"  >
+//   <h3 style="text-align: center;
+//   border: 1px solid green;
+//  color: green;
+//  background-color: #b7e3b7; width:150%;">Course Added Succesfully</h3></div>';
+$msg =' 
+<script>
+alert("course added succesfully");
+</script>';
   }
   else{
-    $msg ='<div class="warning"  >
-    <h3 style="text-align: center;
-    border: 1px solid red;
-   color: red;
-   background-color: #ff72724f">Unable to add Course</h3></div>';
+  //   $msg ='<div class="warning"  >
+  //   <h3 style="text-align: center;
+  //   border: 1px solid red;
+  //  color: red;
+  //  background-color: #ff72724f">Unable to add Course</h3></div>';
+  $msg = '<script>
+alert("Unable to add Course");
+</script>';
   }
 }
 }
@@ -75,6 +91,7 @@ else {
 	
 	<div id="mySidenav" class="sidenav">
 	<p class="logo"><span>E</span>du-tech</p>
+  
 	<a href="dashboard.php" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
 	<a href="courses.php"class="icon-a"style="
     
@@ -83,13 +100,13 @@ else {
     border-bottom-right-radius: 20px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    
+    border-style: inset;
     "><i class="fa fa-book" style="font-size:24px"></i> &nbsp;&nbsp;Courses</a>
 	<a href="lectures.php"class="icon-a"><i class="fa fa-youtube-play" style="font-size:24px"></i> &nbsp;&nbsp;Lessons</a>
-	<a href="#"class="icon-a"><i class="fa fa-mortar-board" style="font-size:24px"></i> &nbsp;&nbsp;Quiz</a>
+	<a href="quiz.php"class="icon-a"><i class="fa fa-mortar-board" style="font-size:24px"></i> &nbsp;&nbsp;Quiz</a>
 	<a href="#"class="icon-a"><i class="fa fa-credit-card" style="font-size:24px"></i> &nbsp;&nbsp;payment</a>
 	<a href="#"class="icon-a"><i class="fa fa-key" style="font-size:24px"></i> &nbsp;&nbsp;Change password</a>
-	<a href="#"class="icon-a"><i class="fa fa-sign-out" style="font-size:24px"></i> &nbsp;&nbsp;Logout</a>
+	<a href="logout.php"class="icon-a" name="logout" ><i class="fa fa-sign-out" style="font-size:24px"></i> &nbsp;&nbsp;Logout</a>
 
 </div>
 

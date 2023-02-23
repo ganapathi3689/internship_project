@@ -50,6 +50,7 @@ body{
   right: 25px;
   font-size: 36px;
 }
+
 #main {
   transition: margin-left .5s;
   padding: 16px;
